@@ -1,0 +1,517 @@
+verify
+=====================================================================================================================
+/usr/local/cuda-12.2/bin/nvcc -DNONE -DEXECMODE=2 -DNONE -DNONE -DNONE --use_fast_math -forward-unknown-to-host-compiler -DQBLKSIZE=64 -DKBLKSIZE=64 -I../../lib/ -I ../../include -I/home/msra/v-feiychen/projects/cutlass/include -I/home/msra/v-feiychen/projects/cutlass/examples/common -I/usr/local/cuda-12.2/include -I/include -I/examples -I/home/msra/v-feiychen/projects/cutlass/tools/util/include -O3 -DNDEBUG --generate-code=arch=compute_90a,code=[sm_90a] -Xcompiler=-fPIE -DCUTLASS_ENABLE_TENSOR_CORE_MMA=1 --expt-extended-lambda --expt-relaxed-constexpr -DCUTLASS_TEST_LEVEL=0 -DCUTLASS_TEST_ENABLE_CACHED_RESULTS=1 -DCUTLASS_CONV_UNIT_TEST_RIGOROUS_SIZE_ENABLED=1 -DCUTLASS_DEBUG_TRACE_LEVEL=0 -Xcompiler=-Wno-psabi -Xcompiler=-fno-strict-aliasing -Xnvlink=--verbose -Xptxas=--verbose -std=c++17 -MD -MT -MF -x cu fmha_forward.cu -Wl,-rpath,'/usr/local/cuda-12.2/lib64' -Wl,-rpath,'/usr/local/cuda-12.2/lib' -lcuda -lcudadevrt -lcudart_static -lcublas -lrt -lpthread -ldl -o fmha_forward_pipeline
+=====================================================================================================================
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [339114.3]Gflop/s  (1.6212)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=64, KBLK=64, HEAD=64, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [343711.4]Gflop/s  (1.5995)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 64
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [454963.3]Gflop/s  (1.2084)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=64, KBLK=64, HEAD=128, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 64
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [465932.9]Gflop/s  (1.1799)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 64
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [469228.7]Gflop/s  (1.1716)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=64, KBLK=64, HEAD=256, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 64
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [485991.7]Gflop/s  (1.1312)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [366183.6]Gflop/s  (1.5013)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=64, KBLK=64, HEAD=64, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [371384.7]Gflop/s  (1.4803)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 64
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [534249.7]Gflop/s  (1.0290)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=64, KBLK=64, HEAD=128, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 64
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [541761.7]Gflop/s  (1.0148)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 64
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [543168.2]Gflop/s  (1.0121)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=64, KBLK=64, HEAD=256, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 64
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [550817.5]Gflop/s  (0.9981)ms
+FLOP RUN END
+=====================================================================================================================
+/usr/local/cuda-12.2/bin/nvcc -DNONE -DEXECMODE=2 -DNONE -DNONE -DNONE --use_fast_math -forward-unknown-to-host-compiler -DQBLKSIZE=64 -DKBLKSIZE=128 -I../../lib/ -I ../../include -I/home/msra/v-feiychen/projects/cutlass/include -I/home/msra/v-feiychen/projects/cutlass/examples/common -I/usr/local/cuda-12.2/include -I/include -I/examples -I/home/msra/v-feiychen/projects/cutlass/tools/util/include -O3 -DNDEBUG --generate-code=arch=compute_90a,code=[sm_90a] -Xcompiler=-fPIE -DCUTLASS_ENABLE_TENSOR_CORE_MMA=1 --expt-extended-lambda --expt-relaxed-constexpr -DCUTLASS_TEST_LEVEL=0 -DCUTLASS_TEST_ENABLE_CACHED_RESULTS=1 -DCUTLASS_CONV_UNIT_TEST_RIGOROUS_SIZE_ENABLED=1 -DCUTLASS_DEBUG_TRACE_LEVEL=0 -Xcompiler=-Wno-psabi -Xcompiler=-fno-strict-aliasing -Xnvlink=--verbose -Xptxas=--verbose -std=c++17 -MD -MT -MF -x cu fmha_forward.cu -Wl,-rpath,'/usr/local/cuda-12.2/lib64' -Wl,-rpath,'/usr/local/cuda-12.2/lib' -lcuda -lcudadevrt -lcudart_static -lcublas -lrt -lpthread -ldl -o fmha_forward_pipeline
+=====================================================================================================================
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [391189.5]Gflop/s  (1.4053)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=64, KBLK=128, HEAD=64, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [395254.3]Gflop/s  (1.3909)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 64
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [418154.3]Gflop/s  (1.3147)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=64, KBLK=128, HEAD=128, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 64
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [421615.8]Gflop/s  (1.3039)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 64
+KBLK = 128
+L = 32 : 8 * 4
+CUTE_FMHA:     [361521.6]Gflop/s  (1.5207)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=64, KBLK=128, HEAD=256, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 64
+KBLK = 128
+L = 32 : 8 * 4
+CUTE_FMHA:     [369931.8]Gflop/s  (1.4861)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [420323.2]Gflop/s  (1.3079)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=64, KBLK=128, HEAD=64, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [424230.2]Gflop/s  (1.2959)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 64
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [555731.0]Gflop/s  (0.9892)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=64, KBLK=128, HEAD=128, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 64
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [571801.5]Gflop/s  (0.9614)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 64
+KBLK = 128
+L = 32 : 8 * 4
+CUTE_FMHA:     [613479.1]Gflop/s  (0.8961)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=64, KBLK=128, HEAD=256, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 64
+KBLK = 128
+L = 32 : 8 * 4
+CUTE_FMHA:     [627616.1]Gflop/s  (0.8759)ms
+FLOP RUN END
+=====================================================================================================================
+/usr/local/cuda-12.2/bin/nvcc -DNONE -DEXECMODE=2 -DNONE -DNONE -DNONE --use_fast_math -forward-unknown-to-host-compiler -DQBLKSIZE=128 -DKBLKSIZE=64 -I../../lib/ -I ../../include -I/home/msra/v-feiychen/projects/cutlass/include -I/home/msra/v-feiychen/projects/cutlass/examples/common -I/usr/local/cuda-12.2/include -I/include -I/examples -I/home/msra/v-feiychen/projects/cutlass/tools/util/include -O3 -DNDEBUG --generate-code=arch=compute_90a,code=[sm_90a] -Xcompiler=-fPIE -DCUTLASS_ENABLE_TENSOR_CORE_MMA=1 --expt-extended-lambda --expt-relaxed-constexpr -DCUTLASS_TEST_LEVEL=0 -DCUTLASS_TEST_ENABLE_CACHED_RESULTS=1 -DCUTLASS_CONV_UNIT_TEST_RIGOROUS_SIZE_ENABLED=1 -DCUTLASS_DEBUG_TRACE_LEVEL=0 -Xcompiler=-Wno-psabi -Xcompiler=-fno-strict-aliasing -Xnvlink=--verbose -Xptxas=--verbose -std=c++17 -MD -MT -MF -x cu fmha_forward.cu -Wl,-rpath,'/usr/local/cuda-12.2/lib64' -Wl,-rpath,'/usr/local/cuda-12.2/lib' -lcuda -lcudadevrt -lcudart_static -lcublas -lrt -lpthread -ldl -o fmha_forward_pipeline
+=====================================================================================================================
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [332286.3]Gflop/s  (1.6545)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=64, HEAD=64, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [333906.3]Gflop/s  (1.6464)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [414602.1]Gflop/s  (1.3260)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=64, HEAD=128, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [417343.2]Gflop/s  (1.3173)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [46581.9]Gflop/s  (11.8019)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=64, HEAD=256, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [46618.1]Gflop/s  (11.7928)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [359494.2]Gflop/s  (1.5292)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=64, HEAD=64, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [362997.9]Gflop/s  (1.5145)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [460994.2]Gflop/s  (1.1925)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=64, HEAD=128, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [468709.4]Gflop/s  (1.1729)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [38463.2]Gflop/s  (14.2930)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=64, HEAD=256, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [38464.6]Gflop/s  (14.2925)ms
+FLOP RUN END
+=====================================================================================================================
+/usr/local/cuda-12.2/bin/nvcc -DNONE -DEXECMODE=2 -DNONE -DNONE -DNONE --use_fast_math -forward-unknown-to-host-compiler -DQBLKSIZE=128 -DKBLKSIZE=128 -I../../lib/ -I ../../include -I/home/msra/v-feiychen/projects/cutlass/include -I/home/msra/v-feiychen/projects/cutlass/examples/common -I/usr/local/cuda-12.2/include -I/include -I/examples -I/home/msra/v-feiychen/projects/cutlass/tools/util/include -O3 -DNDEBUG --generate-code=arch=compute_90a,code=[sm_90a] -Xcompiler=-fPIE -DCUTLASS_ENABLE_TENSOR_CORE_MMA=1 --expt-extended-lambda --expt-relaxed-constexpr -DCUTLASS_TEST_LEVEL=0 -DCUTLASS_TEST_ENABLE_CACHED_RESULTS=1 -DCUTLASS_CONV_UNIT_TEST_RIGOROUS_SIZE_ENABLED=1 -DCUTLASS_DEBUG_TRACE_LEVEL=0 -Xcompiler=-Wno-psabi -Xcompiler=-fno-strict-aliasing -Xnvlink=--verbose -Xptxas=--verbose -std=c++17 -MD -MT -MF -x cu fmha_forward.cu -Wl,-rpath,'/usr/local/cuda-12.2/lib64' -Wl,-rpath,'/usr/local/cuda-12.2/lib' -lcuda -lcudadevrt -lcudart_static -lcublas -lrt -lpthread -ldl -o fmha_forward_pipeline
+=====================================================================================================================
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [329931.6]Gflop/s  (1.6663)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=128, HEAD=64, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [332569.8]Gflop/s  (1.6531)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [288795.5]Gflop/s  (1.9036)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=128, HEAD=128, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [288765.0]Gflop/s  (1.9038)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 128
+L = 32 : 8 * 4
+CUTE_FMHA:     [48046.2]Gflop/s  (11.4422)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=128, HEAD=256, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 128
+L = 32 : 8 * 4
+CUTE_FMHA:     [48088.3]Gflop/s  (11.4322)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [351104.0]Gflop/s  (1.5658)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=128, HEAD=64, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [353833.2]Gflop/s  (1.5537)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [337853.9]Gflop/s  (1.6272)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=128, HEAD=128, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [340986.9]Gflop/s  (1.6122)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 128
+L = 32 : 8 * 4
+CUTE_FMHA:     [51346.0]Gflop/s  (10.7069)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=128, HEAD=256, CTA=NONE, EXECMODE=2, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 128
+L = 32 : 8 * 4
+CUTE_FMHA:     [51260.6]Gflop/s  (10.7247)ms
+FLOP RUN END

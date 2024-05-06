@@ -1,0 +1,260 @@
+bash ./compile_run_all_config.sh verify CTA256 QINRMEM  NONE NONE NONE > results/pipelined_CTA256_QINRMEM.txt
+verify
+=====================================================================================================================
+/usr/local/cuda-12.2/bin/nvcc -DCTA256 -DQINRMEM -DNONE -DNONE -DNONE --use_fast_math -forward-unknown-to-host-compiler -DQBLKSIZE=128 -DKBLKSIZE=64 -I../../lib/ -I ../../include -I/home/msra/v-feiychen/projects/cutlass/include -I/home/msra/v-feiychen/projects/cutlass/examples/common -I/usr/local/cuda-12.2/include -I/include -I/examples -I/home/msra/v-feiychen/projects/cutlass/tools/util/include -O3 -DNDEBUG --generate-code=arch=compute_90a,code=[sm_90a] -Xcompiler=-fPIE -DCUTLASS_ENABLE_TENSOR_CORE_MMA=1 --expt-extended-lambda --expt-relaxed-constexpr -DCUTLASS_TEST_LEVEL=0 -DCUTLASS_TEST_ENABLE_CACHED_RESULTS=1 -DCUTLASS_CONV_UNIT_TEST_RIGOROUS_SIZE_ENABLED=1 -DCUTLASS_DEBUG_TRACE_LEVEL=0 -Xcompiler=-Wno-psabi -Xcompiler=-fno-strict-aliasing -Xnvlink=--verbose -Xptxas=--verbose -std=c++17 -MD -MT -MF -x cu fmha_forward.cu -Wl,-rpath,'/usr/local/cuda-12.2/lib64' -Wl,-rpath,'/usr/local/cuda-12.2/lib' -lcuda -lcudadevrt -lcudart_static -lcublas -lrt -lpthread -ldl -o fmha_forward_pipeline
+=====================================================================================================================
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [329995.0]Gflop/s  (1.6660)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=64, HEAD=64, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [333809.4]Gflop/s  (1.6469)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [371432.5]Gflop/s  (1.4801)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=64, HEAD=128, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [379518.8]Gflop/s  (1.4486)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [495097.1]Gflop/s  (1.1104)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=64, HEAD=256, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [517600.3]Gflop/s  (1.0621)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [357088.2]Gflop/s  (1.5396)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=64, HEAD=64, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [360968.3]Gflop/s  (1.5230)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [417737.4]Gflop/s  (1.3160)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=64, HEAD=128, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 64
+L = 64 : 16 * 4
+CUTE_FMHA:     [422720.4]Gflop/s  (1.3005)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [592838.6]Gflop/s  (0.9273)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=64, HEAD=256, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 64
+L = 32 : 8 * 4
+CUTE_FMHA:     [602381.7]Gflop/s  (0.9126)ms
+FLOP RUN END
+=====================================================================================================================
+/usr/local/cuda-12.2/bin/nvcc -DCTA256 -DQINRMEM -DNONE -DNONE -DNONE --use_fast_math -forward-unknown-to-host-compiler -DQBLKSIZE=128 -DKBLKSIZE=128 -I../../lib/ -I ../../include -I/home/msra/v-feiychen/projects/cutlass/include -I/home/msra/v-feiychen/projects/cutlass/examples/common -I/usr/local/cuda-12.2/include -I/include -I/examples -I/home/msra/v-feiychen/projects/cutlass/tools/util/include -O3 -DNDEBUG --generate-code=arch=compute_90a,code=[sm_90a] -Xcompiler=-fPIE -DCUTLASS_ENABLE_TENSOR_CORE_MMA=1 --expt-extended-lambda --expt-relaxed-constexpr -DCUTLASS_TEST_LEVEL=0 -DCUTLASS_TEST_ENABLE_CACHED_RESULTS=1 -DCUTLASS_CONV_UNIT_TEST_RIGOROUS_SIZE_ENABLED=1 -DCUTLASS_DEBUG_TRACE_LEVEL=0 -Xcompiler=-Wno-psabi -Xcompiler=-fno-strict-aliasing -Xnvlink=--verbose -Xptxas=--verbose -std=c++17 -MD -MT -MF -x cu fmha_forward.cu -Wl,-rpath,'/usr/local/cuda-12.2/lib64' -Wl,-rpath,'/usr/local/cuda-12.2/lib' -lcuda -lcudadevrt -lcudart_static -lcublas -lrt -lpthread -ldl -o fmha_forward_pipeline
+=====================================================================================================================
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [302467.8]Gflop/s  (1.8176)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=128, HEAD=64, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [305190.9]Gflop/s  (1.8014)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [443878.4]Gflop/s  (1.2385)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=128, HEAD=128, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [450065.7]Gflop/s  (1.2215)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 128
+L = 32 : 8 * 4
+  Shared Memory Allocation Failed 
+ cudaFuncSetAttribute() returned error: invalid argument
+FLOP RUN BEGIN
+PREC=1, QBLK=128, KBLK=128, HEAD=256, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 128
+L = 32 : 8 * 4
+  Shared Memory Allocation Failed 
+ cudaFuncSetAttribute() returned error: invalid argument
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [318842.4]Gflop/s  (1.7242)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=128, HEAD=64, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 128
+KBLK = 128
+L = 128 : 32 * 4
+CUTE_FMHA:     [321778.0]Gflop/s  (1.7085)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [494883.1]Gflop/s  (1.1109)ms
+Error (percentage) : 0.000000
+gemm-check-2: Passed
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=128, HEAD=128, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 128
+QBLK = 128
+KBLK = 128
+L = 64 : 16 * 4
+CUTE_FMHA:     [504822.6]Gflop/s  (1.0890)ms
+FLOP RUN END
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 128
+L = 32 : 8 * 4
+  Shared Memory Allocation Failed 
+ cudaFuncSetAttribute() returned error: invalid argument
+FLOP RUN BEGIN
+PREC=2, QBLK=128, KBLK=128, HEAD=256, CTA=CTA256, QINRMEM, NONE, NONE, NONE
+Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 256
+QBLK = 128
+KBLK = 128
+L = 32 : 8 * 4
+  Shared Memory Allocation Failed 
+ cudaFuncSetAttribute() returned error: invalid argument
+FLOP RUN END
