@@ -2,6 +2,7 @@
 
 CUTLASS_DIR=/home/msra/v-feiychen/projects/cutlass
 CUDA_DIR=/usr/local/cuda-12.2
+DEVICE=6
 
 QBLKSIZES=( 64 128 )
 KBLKSIZES=( 64 128 )
@@ -49,7 +50,7 @@ do
 # VERIFICATION RUN
 if [[ $INPUT1 == $VERIFY || $INPUT1 == $VERIFYALL ]];
 then
-./fmha_forward_pipeline --batch-size=4 --seq-length=4096 --dim-size=2048 --iterations=1 --head-size=$HEAD  --reference-check=true --prec-type=$PREC
+./fmha_forward_pipeline --batch-size=4 --seq-length=4096 --dim-size=2048 --iterations=1 --head-size=$HEAD  --reference-check=true --prec-type=$PREC --device=$DEVICE
 fi
 
 #FLOP RUN
@@ -57,7 +58,7 @@ if [[ $INPUT1 != $VERIFYALL ]];
 then
 echo "FLOP RUN BEGIN"
 echo "PREC=$PREC, QBLK=$QBLK, KBLK=$KBLK, HEAD=$HEAD, CTA=$2, $3, $4, $5, $6"
-./fmha_forward_pipeline --batch-size=4 --seq-length=4096 --dim-size=2048 --iterations=1000 --head-size=$HEAD  --reference-check=false --prec-type=$PREC
+./fmha_forward_pipeline --batch-size=4 --seq-length=4096 --dim-size=2048 --iterations=1000 --head-size=$HEAD  --reference-check=false --prec-type=$PREC --device=$DEVICE
 echo "FLOP RUN END"
 fi
 done

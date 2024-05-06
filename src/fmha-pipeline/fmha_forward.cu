@@ -442,7 +442,7 @@ template <> struct TypeConvert<cutlass::half_t> {
 template <typename PrecType, int HEADDIM>
 void testFmhaForward(int m, int n, int numHeads, int batchSize, int iterations,
                      bool refCheck, bool printValues, bool printDiffs,
-                     int nStreams) {
+                     int nStreams, int deviceid=0) {
 #ifdef GEMM2FP8  
   using Gemm2Type = PrecType;
 #else
@@ -453,7 +453,7 @@ void testFmhaForward(int m, int n, int numHeads, int batchSize, int iterations,
   const float softmax_scale = (1.0f / sqrt(float(HEADDIM)));
   const float scale = softmax_scale * kLog2e;
   cudaDeviceReset();
-  cute::device_init(0);
+  cute::device_init(deviceid);
   int k = HEADDIM;
   std::cout << "M = " << m << std::endl;
   std::cout << "N = " << n << std::endl;
@@ -720,6 +720,7 @@ int main(int argc, char const **argv) {
 
   int seqLength, batchSize, dimSize, iterations, nStreams, kHeadSize, precType;  
 
+  int device_id;
   bool refCheck, printValues, printDiffs;
   cmd.get_cmd_line_argument("batch-size", batchSize, 4);
   cmd.get_cmd_line_argument("dim-size", dimSize, 2048);
@@ -731,6 +732,8 @@ int main(int argc, char const **argv) {
   cmd.get_cmd_line_argument("print-values", printValues, false);
   cmd.get_cmd_line_argument("print-diffs", printDiffs, false);
   cmd.get_cmd_line_argument("prec-type", precType, 2);  
+  cmd.get_cmd_line_argument("device", device_id, 0);
+
 
   if (nStreams > batchSize) {
     std::cout << "#max no. of cuda streams <= batchSize" << std::endl;
@@ -746,15 +749,15 @@ int main(int argc, char const **argv) {
     if (kHeadSize == 64) {
       testFmhaForward<cutlass::half_t, 64>(seqLength, seqLength, numHeads,
                                            batchSize, iterations, refCheck,
-                                           printValues, printDiffs, nStreams);
+                                           printValues, printDiffs, nStreams,device_id);
     } else if (kHeadSize == 128) {
       testFmhaForward<cutlass::half_t, 128>(seqLength, seqLength, numHeads,
                                             batchSize, iterations, refCheck,
-                                            printValues, printDiffs, nStreams);
+                                            printValues, printDiffs, nStreams,device_id);
     } else if (kHeadSize == 256) {
       testFmhaForward<cutlass::half_t, 256>(seqLength, seqLength, numHeads,
                                             batchSize, iterations, refCheck,
-                                            printValues, printDiffs, nStreams);
+                                            printValues, printDiffs, nStreams,device_id);
     } else {
       std::cout << "Unsupported head dim: " << kHeadSize << std::endl;
       exit(-1);
@@ -771,15 +774,15 @@ int main(int argc, char const **argv) {
     if (kHeadSize == 64) {
       testFmhaForward<cutlass::float_e4m3_t, 64>(
           seqLength, seqLength, numHeads, batchSize, iterations, refCheck,
-          printValues, printDiffs, nStreams);
+          printValues, printDiffs, nStreams,device_id);
     } else if (kHeadSize == 128) {
       testFmhaForward<cutlass::float_e4m3_t, 128>(
           seqLength, seqLength, numHeads, batchSize, iterations, refCheck,
-          printValues, printDiffs, nStreams);
+          printValues, printDiffs, nStreams,device_id);
     } else if (kHeadSize == 256) {
       testFmhaForward<cutlass::float_e4m3_t, 256>(
           seqLength, seqLength, numHeads, batchSize, iterations, refCheck,
-          printValues, printDiffs, nStreams);
+          printValues, printDiffs, nStreams,device_id);
     } else {
       std::cout << "Unsupported head dim: " << kHeadSize << std::endl;
       exit(-1);

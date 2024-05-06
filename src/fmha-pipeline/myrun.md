@@ -1,3 +1,7 @@
+# H100 SXM5 80GB HBM3
+
+- device 0: clock freq: set to 1590 MHz, ncu report 1440 MHz
+- device 1-7: clock freq: 1980 MHz, ncu report 1780 MHz
 - pipelined: `bash compile.sh NONE NONE NONE NONE NONE NONE NONE NONE`
 ```
 ./fmha_forward
@@ -20,6 +24,17 @@ QBLK = 64
 KBLK = 64
 L = 128 : 32 * 4
 CUTE_FMHA:     [308375.4]Gflop/s  (1.7827)ms
+```
+```
+./fmha_forward --prec-type=1 --device=4
+Using device 4: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
+M = 4096
+N = 4096
+K = 64
+QBLK = 64
+KBLK = 64
+L = 128 : 32 * 4
+CUTE_FMHA:     [384203.4]Gflop/s  (1.4309)ms
 ```
 
 - warp-specilized: `bash compile.sh EXECMODE=1 NONE NONE NONE NONE NONE NONE NONE`
