@@ -1,4 +1,4 @@
-- bash compile.sh NONE NONE NONE NONE NONE NONE NONE NONE
+- pipelined: `bash compile.sh NONE NONE NONE NONE NONE NONE NONE NONE`
 ```
 ./fmha_forward
 Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
@@ -22,7 +22,7 @@ L = 128 : 32 * 4
 CUTE_FMHA:     [385022.3]Gflop/s  (1.4279)m
 ```
 
-- bash compile.sh EXECMODE=1 NONE NONE NONE NONE NONE NONE NONE
+- warp-specilized: `bash compile.sh EXECMODE=1 NONE NONE NONE NONE NONE NONE NONE`
 ```
 ./fmha_forward --prec-type 2
 Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
@@ -46,7 +46,7 @@ L = 128 : 32 * 4
 CUTE_FMHA:     [178858.3]Gflop/s  (3.0737)ms
 ```
 
-- bash compile.sh EXECMODE=2 NONE NONE NONE NONE NONE NONE NONE
+- non-pipelined: `bash compile.sh EXECMODE=2 NONE NONE NONE NONE NONE NONE NONE`
 ```
 ./fmha_forward --prec-type 2
 Using device 0: NVIDIA H100 80GB HBM3  (SM90, 132 SMs)
